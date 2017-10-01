@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+
+         
+   
+
+
+
+
+
+
+  <menuitem id="o2clinic_configuration_menu" name="Configuration"   />
+
+
+
+
+
+    <menuitem id="o2clinic_reception_configuration_teeths"
+                  name="services" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_services_action"  />
+
+  <menuitem id="o2clinic_reception_configuration_nationality"
+                  name="Nationality" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_nationality_action"  />
+
+<menuitem id="o2clinic_reception_configuration_doctors"
+                  name="Doctors" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_doctors_action"  />
+
+                  
+<menuitem id="o2clinic_reception_configuration_doctor_assistants"
+                  name="Doctor Aassistants" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_doctor_assistants_action"  />
+
+<menuitem id="o2clinic_reception_configuration_clinics"
+                  name="Clinics" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_clinics_action"  />
+
+
+<menuitem id="o2clinic_reception_configuration_specialists"
+                  name="Specialist" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_specialists_action"  />
+
+<menuitem id="o2clinic_reception_configuration_patients"
+                  name="Patients" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_patients_action"  />
+
+
+
+
+<menuitem id="o2clinic_reception_open_reservations"
+                  name="open_reservations" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_open_reservations_action"  />
+
+                  <menuitem id="o2clinic_reception_employees"
+                  name="employees" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_employees_action"  />
+
+                  
+   <menuitem id="o2clinic_reception_configuration_teeths"
+                  name="teeths" 
+                  parent="o2clinic_configuration_menu" 
+                  action="o2clinic_reception_configuration_teeths_action"  />
+
+   <menuitem id="o2clinic_clinic_menu" name="Clinics"  />        
+   <menuitem id="o2clinic_lap_menu" name="Lap"   />
+   <menuitem id="o2clinic_emr_menu" name="EMR"    />
+ 
+    
+
+ 
+
+
+	</data>
+</odoo>

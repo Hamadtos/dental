@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+<record id="doctor_form" model="ir.ui.view">
+			<field name="name">doctor form</field>
+			<field name="model">o2clinic.doctors</field>
+			<field name="arch" type="xml">
+				<form string="New Appoinement form">
+					 <header>
+	        <button string="Make Appointment" type="object" name="make_appoinement" class="oe_highlight pull-right"/>
+	    </header>
+					<sheet>
+						<group>
+							<group string="Basic Data">
+
+		        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;}"/>
+
+									<field name="name"/>
+									<field name="waiting_time"/>
+									<field name="next_book"/>
+
+									<field name="count_book" string="pending book"/>
+<field name="next_book_num" />
+
+							</group>
+							<group string="">
+							</group>
+						</group>
+						<notebook>
+							<page string="Public Information">
+
+							</page>
+							<page string="Personal Information">
+							 
+							</page>
+							<page string="Appointments">
+								 
+							</page>
+							<page string="HR Settings">
+								 
+							</page>
+						</notebook>
+					</sheet>
+					<footer>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+ 
+
+
+<record id="appoinements_form" model="ir.ui.view">
+			<field name="name">appoinements form</field>
+			<field name="model">o2clinic.appoinements</field>
+		 
+			<field name="arch" type="xml">
+				<form string="New Appoinement form">
+					<header>
+       <button name="draft" type="workflow"
+                                string="Reset to draft"
+                                states="confirmed,done"/>
+                        <button name="confirm" type="workflow"
+                                string="Confirm" states="draft"
+                                class="oe_highlight"/>
+                        <button name="done" type="workflow"
+                                string="Mark as done" states="confirmed"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"  statusbar_visible="draft,confirmed,done" />
+
+					</header>
+					<sheet>
+						
+						<group>
+							<group string="Basic Data">
+								<field name="patient_id"/>
+								
+<field name="state"/>
+ 
+
+
+<field name="patient_phone"/>
+<field name="patient_gender" widget="radio"/>
+
+
+							</group>
+							<group string="Appointment Data">
+								
+
+<field name="appointment_time"/>
+<field name="doctor_id"/>
+<field name="open_reservation_id"/>
+<field name="active"/>
+<field name="waiting_time"/>
+<field name="sort"/>
+<field name="notification"/>
+
+							</group>
+							
+						</group>
+<field name="comment"/>
+						<notebook>
+							<page string="Student Info">
+								 
+							</page>
+							<page string="Page 2">
+							 
+							</page>
+							<page string="Hobbies">
+								 
+							</page>
+						</notebook>
+					</sheet>
+					<footer>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+ 
+
+
+	
+
+		<!-- appoinements action -->
+		<record id="o2clinic_reception_new_appoinement_action" model="ir.actions.act_window">
+			<field name="name">Craete New Appoinement</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.doctors</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,form</field>
+		</record>
+
+<record model="ir.values" id="ir_open_journal_period">
+    <field name="key2">tree_but_open</field>
+    <field name="model">o2clinic.doctors</field>
+    <field name="name">Open Journal</field>
+   <!--  <field name="value" eval="'ir.actions.wizard,%d'%action_move_journal_line_form_select"/> -->
+    <field name="object" eval="True"/>
+</record>
+	
+
+
+		<!-- Search Doctors -->
+		<record id="doctors_search" model="ir.ui.view">
+			<field name="name">Doctors Search</field>
+			<field name="model">o2clinic.doctors</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name="gender"/>
+					 
+					<filter string="Male" domain="[('gender','=','male')]"/>
+						<filter string="Female" domain="[('gender','=','female')]"/>
+					<filter string="Active" domain="[('active','=',True)]"/>
+					<group>
+						<filter string="clinics" domain="[]" context="{'group_by':'clinic_id'}"/>
+						<filter string="specialists" domain="[]" context="{'group_by':'specialist_id'}"/>
+						<filter string="active" domain="[]" context="{'group_by':'active'}"/>
+						<filter string="gender" domain="[]" context="{'group_by':'gender'}"/>
+					</group>
+				</search>
+			</field>
+		</record>
+
+
+
+<record id="product_normal_form_view" model="ir.ui.view">
+<field name="name">product.normal.form.inherit</field>
+<field name="model">o2clinic.services</field>
+<field name="inherit_id" ref="product.product_normal_form_view"/>
+<field name="arch" type="xml">
+<field name="id" position="after">
+
+</field>
+</field>
+</record>
+
+
+
+
+
+		<!-- o2clinic.appoinements Tree -->
+		<record id="reservations_tree" model="ir.ui.view">
+			<field name="name">appoinements Tree</field>
+			<field name="model">o2clinic.appoinements</field>
+
+			<field name="arch" type="xml">
+				<tree colors="blue:state == 'on_hold';green:state=='open';red:state == 'close'" >
+					<field name="id" string="Reservation ID"/>
+					<field name="patient_id" string="Patient"/>
+					<field name="patient_gender"/>
+					<field name="active"  string="Urgent"/>
+					<field name="appointment_time"  string="Reservation Start"/>
+					<field name="patient_id" string="Dentist" widget="Many2one"/>
+					<field name="patient_id" string="Room"/>
+					<field name="waiting_time"  string="Waiting time"/>
+					<field name="patient_id" string="Patient Status"/>
+					<field name="state"/>
+					 
+				</tree>
+			</field>
+		</record>
+
+
+
+
+
+	<record model="ir.ui.view" id="resource_kanban_view">
+    <field name="name">doctors</field>
+    <field name="model">o2clinic.doctors</field>
+    <field name="type">kanban</field>
+    <field name="arch" type="xml">
+        <kanban create="false" >
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_resource_vignette oe_kanban_global_click">
+                        <div class="oe_resource_image">
+
+                            <a type="edit"><img t-att-src="kanban_image('o2clinic.doctors', 'image', record.id.value)"  width="50" height="100" class="oe_kanban_avatar pull-left" /></a>
+                        </div>
+                      
+                                 <div t-attf-class="oe_kanban_content">                         
+    <label for="available" t-attf-class="oe_kanban_status {{ available == TRUE ? 'oe_kanban_status_green' : 'oe_kanban_status_red' }} pull-right "/>
+                                    <b>Doctor name:</b>
+                                    <field name="name"   />
+                                    <br/>
+                                    <b>Clinic Name:</b>
+                                    <field name="clinic_id"/>
+                                    <br/>
+                                    <b>Available:</b>
+                                      :
+                                    <field name="available"/>
+                                      <br/>
+                                      <b> waiting_time:</b>
+                                     
+                                    <field name="waiting_time" />
+                                      <br/>
+                                      <b> next book after:</b>
+                                     
+                                    <field name="next_book" />
+  <br/>
+                                      <b> next book NUM:</b>
+                                     
+                                    <field name="next_book_num" />
+
+                                </div>
+
+                      </div>                      
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>  
+		
+
+
+
+
+ 	
+
+		<record id="o2clinic_patient_form" model="ir.ui.view">
+			<field name="name">patient form</field>
+			<field name="model">o2clinic.patients</field> 
+			<field name="arch" type="xml">
+				<form string="patient form">
+					<header>
+                       
+					</header>
+					<sheet>
+						
+						<field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;}"/>
+                      
+							<group string="Basic Data">
+								<field name="name"/>
+								<field name="en_name"/>
+								<field name="gender" widget="radio"/>
+								<field name="birth_date"/>
+
+
+								<field name="nationality_id" />
+
+								<field name="Social_status" widget="radio" />
+								<field name="passport_No" />
+								<field name="blood_type" />
+								<field name="ID_Number" />
+								<field name="Religion" />
+
+								<field name="Date_of_Birth" />
+								<field name="telephone_number" />
+								<field name="address" />
+								<field name="patient_job" />
+								<field name="sponsor_name" />
+								<field name="sponsor_mobile_No" />
+							</group>
+
+
+					</sheet>
+
+				</form>
+			</field>
+		</record>
+
+
+  <record id="o2clinic_reception_appoinements_action" model="ir.actions.act_window">
+			<field name="name">appoinements</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.appoinements</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,kanban,form</field>
+
+		</record>
+
+
+  <record id="o2clinic_reception_configuration_reservations_action" model="ir.actions.act_window">
+			<field name="name">appoinements</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.appoinements</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,kanban,form</field>
+		</record>
+
+       <record id="o2clinic_reception_configuration_open_reservations_action" model="ir.actions.act_window">
+			<field name="name">reservations</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.open.reservations</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record>
+
+		
+
+
+
+
+		<record id="o2clinic_reception_action" model="ir.actions.act_window">
+			<field name="name">patients</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.patients</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record>
+
+
+	
+ 
+
+		 
+
+       <record id="o2clinic_reception_configuration_nationality_action" model="ir.actions.act_window">
+			<field name="name">nationality</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.nationality</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record>
+
+
+
+		<record id="o2clinic_reception_configuration_doctors_action" model="ir.actions.act_window">
+			<field name="name">doctors</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.doctors</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record>
+ 
+
+
+		<record id="o2clinic_reception_configuration_doctor_assistants_action" model="ir.actions.act_window">
+			<field name="name">doctor_assistants</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.doctor.assistants</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record>
+ 
+
+
+
+ 		<record id="o2clinic_reception_configuration_specialists_action" model="ir.actions.act_window">
+			<field name="name">specialists</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.specialists</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record>
+ 
+
+
+ 
+ 		<record id="o2clinic_reception_configuration_clinics_action" model="ir.actions.act_window">
+			<field name="name">clinics</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.clinics</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record> 
+
+
+
+ 		<record id="o2clinic_reception_configuration_patients_action" model="ir.actions.act_window">
+			<field name="name">patients</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">o2clinic.patients</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree,kanban</field>
+		</record> 
+		
+
+	   <record id="o2clinic_reception_configuration_employees_action" model="ir.actions.act_window">
+         <field name="name">employees</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">o2clinic.employees</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form,tree,kanban</field>
+      </record> 
+
+
+
+     
+
+
+
+
+
+	</data>
+</odoo>
