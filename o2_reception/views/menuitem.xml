@@ -3,7 +3,7 @@
 	<data>
 
 
-<menuitem id="o2clinic_reception_menu" name="Reception" action="o2clinic_reception_new_appoinement_action" />
+<menuitem id="o2clinic_reception_menu" name="Reception test" action="o2clinic_reception_new_appoinement_action" />
 
 
 
