@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+
+         
+   
+
+
+   <menuitem id="o2clinic_lap_menu" name="Lap"    />
+
+
+    <menuitem id="o2clinic_lap_tooths"
+                  name="tooths" 
+                  parent="o2clinic_lap_menu" 
+                  action="o2clinic_lap_tooths_action"  />
+
+  <menuitem id="o2clinic_lap_tooths_charts"
+                  name="tooths charts" 
+                  parent="o2clinic_lap_menu" 
+                  action="o2clinic_lap_tooths_action"  />
+ 
+    
+
+
+	</data>
+</odoo>

@@ -1,3 +1,2 @@
-import patients
 import appoinements
 

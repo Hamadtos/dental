@@ -3,7 +3,7 @@
 	<data>
 
 
-<menuitem id="o2clinic_reception_menu" name="Reception test" action="o2clinic_reception_new_appoinement_action" />
+<menuitem id="o2clinic_reception_menu" name="Reception" action="o2clinic_reception_new_appoinement_action" />
 
 
 
@@ -21,7 +21,7 @@
 <menuitem id="o2clinic_reception_appoinement_child_2"
                   name="appoinements" 
                   parent="o2clinic_reception_appoinement_menu" 
-                  action="o2clinic_reception_appoinements_action"  />
+                  action="o2clinic_reception_new_appoinement_action"  />
 
 
 
@@ -32,12 +32,12 @@
 <menuitem id="o2clinic_reception_patients_child_1"
                   name="New Patients"
                   parent="o2clinic_reception_patients_menu" 
-                  action="o2clinic_reception_action"  />
+                  action="o2clinic_reception_new_appoinement_action"  />
 
 <menuitem id="o2clinic_reception_patients_child_2"
                   name="Edit Patients"
                   parent="o2clinic_reception_patients_menu" 
-                  action="o2clinic_reception_action"  />
+                  action="o2clinic_reception_new_appoinement_action"  />
 
 
 

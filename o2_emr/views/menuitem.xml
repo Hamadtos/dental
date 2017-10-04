@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+   <menuitem id="o2clinic_emr_menu" name="EMR"    />
+
+
+    <menuitem id="o2clinic_emr_patients"
+                  name="patients" 
+                  parent="o2clinic_emr_menu" 
+                  action="o2clinic_emr_patients_action"  />
+
+  <menuitem id="o2clinic_emr_patients_acc"
+                  name="patients acc" 
+                  parent="o2clinic_emr_menu" 
+                  action="o2clinic_emr_patients_action"  />
+ 
+    
+
+ 
+
+
+	</data>
+</odoo>

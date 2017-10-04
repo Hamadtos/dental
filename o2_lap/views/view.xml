@@ -3,17 +3,19 @@
 	<data>
 
 
-		<record id="o2clinic_reception_new_appoinement_action" model="ir.actions.act_window">
-			<field name="name">doctors</field>
+
+ 
+       <record id="o2clinic_lap_tooths_action" model="ir.actions.act_window">
+			<field name="name">tooths</field>
 			<field name="type">ir.actions.act_window</field>
-			<field name="res_model">o2clinic.doctors</field>
+			<field name="res_model">o2clinic.tooths</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">form,tree,kanban</field>
 		</record>
- 
 
+		
 
-
+		     
 
 
 	</data>

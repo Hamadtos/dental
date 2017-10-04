@@ -5,7 +5,7 @@ from odoo import models, fields , api
 class doctors(models.Model):
 
    _name = "o2clinic.doctors"
-   _inherit = 'hr.employee'
+   # _inherit = 'hr.employee'
    
    name = fields.Char(string="Doctor name", required=True )
    emp_id = fields.Many2one('res.partner', string='Employee  Name')
@@ -83,9 +83,3 @@ class doctors(models.Model):
         'context': {'doctor_id': doctor_id,'patient_gender':'male'}
     } 
 
-
-
-class services(models.Model):
-
-   _name = "o2clinic.services"
-   _inherit = 'product.product'
